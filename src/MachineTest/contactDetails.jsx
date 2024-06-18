@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-function ContactDetails({ onNext,formData, setFormData }) {
-
-
+function ContactDetails({ onNext, formData, setFormData, setToken }) {
   const [errors, setErrors] = useState({});
   const [states, setStates] = useState([]);
 
@@ -12,6 +10,15 @@ function ContactDetails({ onNext,formData, setFormData }) {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+  };
+
+  const handleStateChange = (e) => {
+    const { value } = e.target;
+    const selectedState = states.find((state) => state._id === value);
+    setFormData((prevData) => ({
+      ...prevData,
+      state: selectedState ? selectedState._id : "",
     }));
   };
 
@@ -40,8 +47,8 @@ function ContactDetails({ onNext,formData, setFormData }) {
       isValid = false;
     }
 
-    if (!formData.addressLine1.trim()) {
-      newErrors.addressLine1 = "Address line 1 is required";
+    if (!formData.addressLineOne.trim()) {
+      newErrors.addressLineOne = "Address line 1 is required";
       isValid = false;
     }
 
@@ -55,7 +62,8 @@ function ContactDetails({ onNext,formData, setFormData }) {
   };
 
   useEffect(() => {
-    axios.get('http://learnachieveapi.dollopinfotech.com/state/all')
+    axios
+      .get("http://learnachieveapi.dollopinfotech.com/state/all")
       .then((response) => {
         setStates(response.data.data);
       })
@@ -67,8 +75,19 @@ function ContactDetails({ onNext,formData, setFormData }) {
   const handleNext = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log(formData);
-      onNext();
+      axios
+        .post(
+          "http://learnachieveapi.dollopinfotech.com/user/register",
+          formData
+        )
+        .then((response) => {
+          console.log("Form data submitted:", response.data);
+          setToken(response.data.token);
+          onNext();
+        })
+        .catch((error) => {
+          console.error("Error submitting form data:", error);
+        });
     }
   };
 
@@ -76,7 +95,7 @@ function ContactDetails({ onNext,formData, setFormData }) {
     <main className="container-fluid overflow-scroll">
       <div className="form-container">
         <h2>Contact Details</h2>
-        <form >
+        <form>
           <div className="form-row">
             <div className="form-group">
               <label>Email</label>
@@ -114,15 +133,15 @@ function ContactDetails({ onNext,formData, setFormData }) {
               <label>Address Line-1</label>
               <input
                 type="text"
-                name="addressLine1"
+                name="addressLineOne"
                 placeholder="Enter your address"
-                value={formData.addressLine1}
+                value={formData.addressLineOne}
                 onChange={handleInputChange}
                 required
               />
-              {errors.addressLine1 && (
+              {errors.addressLineOne && (
                 <div className="error-message" style={{ color: "red" }}>
-                  {errors.addressLine1}
+                  {errors.addressLineOne}
                 </div>
               )}
             </div>
@@ -132,18 +151,23 @@ function ContactDetails({ onNext,formData, setFormData }) {
               <label>Address Line-2</label>
               <input
                 type="text"
-                name="addressLine2"
+                name="addressLineTwo"
                 placeholder="Enter your address"
-                value={formData.addressLine2}
+                value={formData.addressLineTwo}
                 onChange={handleInputChange}
               />
             </div>
             <div className="form-group">
               <label>State</label>
-              <select name="state" value={formData.state} onChange={handleInputChange} required>
+              <select
+                name="state"
+                value={formData.state}
+                onChange={handleStateChange}
+                required
+              >
                 <option value="">Select state</option>
                 {states.map((state) => (
-                  <option key={state._id} value={state.name}>
+                  <option key={state._id} value={state._id}>
                     {state.name}
                   </option>
                 ))}
@@ -156,7 +180,7 @@ function ContactDetails({ onNext,formData, setFormData }) {
             </div>
           </div>
           <div className="terms">
-            <input type="checkbox" required/>
+            <input type="checkbox" required />
             <label>I agree to these Terms and Conditions.</label>
           </div>
           <button className="next-button" onClick={handleNext}>

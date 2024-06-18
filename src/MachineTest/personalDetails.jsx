@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function PersonalDetails({ onNext ,formData, setFormData}) {
-
-
+function PersonalDetails({ onNext, formData, setFormData }) {
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
@@ -17,6 +15,7 @@ function PersonalDetails({ onNext ,formData, setFormData}) {
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
+
     if (!formData.firstName.trim()) {
       newErrors.firstName = "First name is required";
       isValid = false;
@@ -38,6 +37,13 @@ function PersonalDetails({ onNext ,formData, setFormData}) {
     if (!formData.dateOfBirth) {
       newErrors.dateOfBirth = "Date of birth is required";
       isValid = false;
+    } else {
+      const today = new Date();
+      const dob = new Date(formData.dateOfBirth);
+      if (dob >= today) {
+        newErrors.dateOfBirth = "Date of birth must be before today";
+        isValid = false;
+      }
     }
 
     if (!formData.gender) {
@@ -60,8 +66,8 @@ function PersonalDetails({ onNext ,formData, setFormData}) {
       isValid = false;
     }
 
-    if (!formData.registeredBy) {
-      newErrors.registeredBy = "Registered by is required";
+    if (!formData.registerBy) {
+      newErrors.registerBy = "Registered by is required";
       isValid = false;
     }
 
@@ -151,9 +157,9 @@ function PersonalDetails({ onNext ,formData, setFormData}) {
                   required
                 >
                   <option value="">Select Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
                 </select>
                 {errors.gender && (
                   <div className="error-message">{errors.gender}</div>
@@ -184,8 +190,8 @@ function PersonalDetails({ onNext ,formData, setFormData}) {
                   required
                 >
                   <option value="">Select Medium</option>
-                  <option value="english">English</option>
-                  <option value="hindi">Hindi</option>
+                  <option value="English">English</option>
+                  <option value="Hindi">Hindi</option>
                 </select>
                 {errors.medium && (
                   <div className="error-message">{errors.medium}</div>
@@ -209,17 +215,17 @@ function PersonalDetails({ onNext ,formData, setFormData}) {
               <div className="form-group">
                 <label>Register By</label>
                 <select
-                  name="registeredBy"
-                  value={formData.registeredBy}
+                  name="registerBy"
+                  value={formData.registerBy}
                   onChange={handleInputChange}
                   required
                 >
                   <option value="">Select Register By</option>
-                  <option value="student">Student</option>
-                  <option value="faculty">Faculty</option>
+                  <option value="Student">Student</option>
+                  <option value="Faculty">Faculty</option>
                 </select>
-                {errors.registeredBy && (
-                  <div className="error-message">{errors.registeredBy}</div>
+                {errors.registerBy && (
+                  <div className="error-message">{errors.registerBy}</div>
                 )}
               </div>
             </div>

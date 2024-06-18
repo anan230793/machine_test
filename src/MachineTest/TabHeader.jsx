@@ -1,14 +1,25 @@
 import React from "react";
 import { FaUser, FaPhone, FaUserCheck } from "react-icons/fa";
 import "./App.css";
-import header from './header.png';
+import header from "./header.png";
 
-const TabHeader = ({ currentTab, setCurrentTab }) => {
+const TabHeader = ({ currentTab, setCurrentTab, token }) => {
+  const handleOtpClick = () => {
+    if (token) {
+      setCurrentTab("otp");
+    } else {
+      alert("Fill Form Fields to proceed with OTP verification.");
+    }
+  };
 
   return (
     <>
       <header className="fixed-top">
-        <img src={header} style={{ height: "300px", width: "100%" }} />
+        <img
+          src={header}
+          style={{ height: "300px", width: "100%" }}
+          alt="Header"
+        />
       </header>
       <div>
         <div className="tab-header">
@@ -26,7 +37,7 @@ const TabHeader = ({ currentTab, setCurrentTab }) => {
           </button>
           <button
             className={currentTab === "otp" ? "active" : ""}
-            onClick={() => setCurrentTab("otp")}
+            onClick={handleOtpClick}
           >
             <FaUserCheck /> OTP Verification
           </button>
