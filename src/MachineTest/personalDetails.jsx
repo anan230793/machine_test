@@ -1,18 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 
-function PersonalDetails({ onNext }) {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    dateOfBirth: "",
-    gender: "",
-    schoolName: "",
-    medium: "",
-    class: "",
-    registeredBy: "",
-  });
+function PersonalDetails({ onNext ,formData, setFormData}) {
+
 
   const [errors, setErrors] = useState({});
 

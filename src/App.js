@@ -7,15 +7,32 @@ import TabHeader from "./MachineTest/TabHeader";
 
 function App() {
   const [currentTab, setCurrentTab] = useState("personal");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    dateOfBirth: "",
+    gender: "",
+    schoolName: "",
+    medium: "",
+    class: "",
+    registeredBy: "",
+    email: "",
+    mobile: "",
+    addressLine1: "",
+    addressLine2: "",
+    state: "",
+  });
+
 
   const renderContent = () => {
     switch (currentTab) {
       case "personal":
-        return <PersonalDetails onNext={() => setCurrentTab("contact")} />;
+        return <PersonalDetails onNext={() => setCurrentTab("contact")} formData={formData} setFormData={setFormData}/>;
       case "contact":
-        return <ContactDetails onNext={() => setCurrentTab("otp")} />;
+        return <ContactDetails onNext={() => setCurrentTab("otp")} formData={formData} setFormData={setFormData}/>;
       case "otp":
-        return <OTPVerificationForm />;
+        return <OTPVerificationForm formData={formData}/>;
       default:
         return <PersonalDetails onNext={() => setCurrentTab("contact")} />;
     }

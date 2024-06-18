@@ -4,6 +4,7 @@ import "./App.css";
 import header from './header.png';
 
 const TabHeader = ({ currentTab, setCurrentTab }) => {
+
   return (
     <>
       <header className="fixed-top">

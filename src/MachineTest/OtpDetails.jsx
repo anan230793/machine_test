@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-function OTPVerificationForm() {
+function OTPVerificationForm({formData}) {
 
   return (
     <main className="container-fluid overflow-scroll">

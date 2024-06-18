@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function ContactDetails({ onNext }) {
-  const [formData, setFormData] = useState({
-    email: "",
-    mobile: "",
-    addressLine1: "",
-    addressLine2: "",
-    state: "",
-  });
+function ContactDetails({ onNext,formData, setFormData }) {
+
 
   const [errors, setErrors] = useState({});
   const [states, setStates] = useState([]);
