@@ -1,0 +1,171 @@
+
+.App {
+  text-align: center;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: auto;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-group input[type="date"] {
+  padding: 8px;
+}
+
+.next-button {
+  display: block;
+  margin-left: auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff6b00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.next-button {
+  background-color: #e65a00;
+}
+
+.tab-header {
+  display: flex;
+  justify-content: center;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-header button {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.tab-header button svg {
+  margin-right: 8px;
+}
+
+.tab-header button.active {
+  color: #ff6b00;
+  border-bottom: 2px solid #ff6b00;
+}
+
+.tab-header button {
+  color: #ff6b00;
+}
+
+.tab-content {
+  padding: 20px;
+}
+
+.otp-inputs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.otp-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.resend {
+  color: #ff6b00;
+  cursor: pointer;
+}
+
+.timer {
+  margin-bottom: 20px;
+}
+
+.submit-button {
+  display: block;
+  margin-left: auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #ff6b00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit-button {
+  background-color: #e65a00;
+}
+
+.error-message {
+  font-size: 12px;
+  font-weight: bold;
+  color: red;
+}
+
+/* Apply styles for small devices (less than 768px) */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    margin-bottom: 10px;
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+  }
+  .otp-inputs {
+    flex-direction: column;
+  }
+  .otp-input {
+    margin-bottom: 10px;
+  }
+}
+
