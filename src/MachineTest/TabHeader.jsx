@@ -15,11 +15,7 @@ const TabHeader = ({ currentTab, setCurrentTab, token }) => {
   return (
     <>
       <header className="fixed-top">
-        <img
-          src={header}
-          style={{ height: "300px", width: "100%" }}
-          alt="Header"
-        />
+        <img src={header} className="header-image" alt="Header" />
       </header>
       <div>
         <div className="tab-header">
@@ -27,19 +23,22 @@ const TabHeader = ({ currentTab, setCurrentTab, token }) => {
             className={currentTab === "personal" ? "active" : ""}
             onClick={() => setCurrentTab("personal")}
           >
-            <FaUser /> Personal Details
+            <FaUser />
+            <span>Personal Details</span>
           </button>
           <button
             className={currentTab === "contact" ? "active" : ""}
             onClick={() => setCurrentTab("contact")}
           >
-            <FaPhone /> Contact Details
+            <FaPhone />
+            <span>Contact Details</span>
           </button>
           <button
             className={currentTab === "otp" ? "active" : ""}
             onClick={handleOtpClick}
           >
-            <FaUserCheck /> OTP Verification
+            <FaUserCheck />
+            <span>OTP Verification</span>
           </button>
         </div>
       </div>

@@ -12,6 +12,12 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
+.header-image {
+  width: 100%;
+  height: auto;
+  max-height: 300px; 
+}
+
 h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -68,7 +74,7 @@ h2 {
 
 .tab-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   background-color: #f8f9fa;
   padding: 10px;
   border-bottom: 1px solid #ddd;
@@ -84,6 +90,7 @@ h2 {
   color: #555;
   display: flex;
   align-items: center;
+  flex-direction: column;
 }
 
 .tab-header button svg {
@@ -151,6 +158,9 @@ h2 {
   }
   h2 {
     font-size: 20px;
+  }
+  .header-image {
+    max-height: 200px;
   }
   .resend, .submit-button {
     font-size: 14px;
