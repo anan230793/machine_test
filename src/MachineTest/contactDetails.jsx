@@ -4,6 +4,8 @@ import axios from "axios";
 function ContactDetails({ onNext, formData, setFormData, setToken }) {
   const [errors, setErrors] = useState({});
   const [states, setStates] = useState([]);
+  const [isTermsChecked, setIsTermsChecked] = useState(false); 
+  const [termsError, setTermsError] = useState(""); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -57,6 +59,13 @@ function ContactDetails({ onNext, formData, setFormData, setToken }) {
       isValid = false;
     }
 
+    if (!isTermsChecked) {
+      setTermsError("You must agree to the terms and conditions");
+      isValid = false;
+    } else {
+      setTermsError("");
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -88,6 +97,13 @@ function ContactDetails({ onNext, formData, setFormData, setToken }) {
         .catch((error) => {
           console.error("Error submitting form data:", error);
         });
+    }
+  };
+
+  const handleTermsChange = (e) => {
+    setIsTermsChecked(e.target.checked);
+    if (e.target.checked) {
+      setTermsError("");
     }
   };
 
@@ -180,10 +196,23 @@ function ContactDetails({ onNext, formData, setFormData, setToken }) {
             </div>
           </div>
           <div className="terms">
-            <input type="checkbox" required />
+            <input
+              type="checkbox"
+              checked={isTermsChecked}
+              onChange={handleTermsChange}
+              required
+            />
             <label>I agree to these Terms and Conditions.</label>
           </div>
-          <button className="next-button" onClick={handleNext}>
+          {termsError && (
+            <div className="error-message" style={{ color: "red" }}>
+              {termsError}
+            </div>
+          )}
+          <button
+            className="next-button"
+            onClick={handleNext}
+          >
             Next
           </button>
         </form>
