@@ -95,6 +95,7 @@ h2 {
 
 .tab-header button svg {
   margin-right: 8px;
+  margin-bottom: 10px;
 }
 
 .tab-header button.active {
