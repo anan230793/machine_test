@@ -59,17 +59,14 @@ h2 {
 .next-button {
   display: block;
   margin-left: auto;
+  margin-top: 5px;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #ff6b00;
+  background-color: #e65a00;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-.next-button {
-  background-color: #e65a00;
 }
 
 .tab-header {
