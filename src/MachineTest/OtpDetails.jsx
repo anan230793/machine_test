@@ -17,13 +17,13 @@ function hideEmail(email) {
 function OTPVerificationForm({ formData, token, onSubmit, setToken }) {
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
-  const [timer, setTimer] = useState(180); // Timer state for 3 minutes
-  const [isResendEnabled, setIsResendEnabled] = useState(false); // Resend button state
+  const [timer, setTimer] = useState(180); 
+  const [isResendEnabled, setIsResendEnabled] = useState(false); 
 
   useEffect(() => {
     if (token) {
-      setTimer(180); // Reset timer to 3 minutes when token is set
-      setIsResendEnabled(false); // Disable resend button when token is set
+      setTimer(180); 
+      setIsResendEnabled(false); 
       const countdown = setInterval(() => {
         setTimer((prev) => {
           if (prev > 1) return prev - 1;
@@ -42,8 +42,8 @@ function OTPVerificationForm({ formData, token, onSubmit, setToken }) {
 
   const handleResendClick = () => {
     setError("");
-    setIsResendEnabled(false); // Disable resend button
-    setTimer(180); // Reset timer to 3 minutes
+    setIsResendEnabled(false); 
+    setTimer(180); 
 
     axios
       .post("http://learnachieveapi.dollopinfotech.com/user/register", formData)
