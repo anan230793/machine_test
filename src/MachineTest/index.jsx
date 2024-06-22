@@ -3,6 +3,7 @@ import PersonalDetails from "./personalDetails";
 import ContactDetails from "./contactDetails";
 import OTPVerificationForm from "./OtpDetails";
 import TabHeader from "./TabHeader";
+import Footer from "./footer";
 
 const initialFormData = {
   firstName: "",
@@ -76,6 +77,7 @@ const FormContainer = () => {
         token={token}
       />
       <div className="tab-content">{renderContent()}</div>
+      <Footer/>
     </div>
   );
 };
